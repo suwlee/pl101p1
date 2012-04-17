@@ -17,10 +17,7 @@ var selectMusFunc = function(tag) {
 		par: handleMusPar,
 		repeat: handleMusRepeat
 	}[tag];
-	if (typeof(func) === 'undefined') {
-		func = handleMusNoteAndRest;
-	}
-	return func;
+	return typeof(func) === 'undefined' ? handleMusNoteAndRest : func;
 };
 
 var handleMusSeq = function(note, start, expr) {
