@@ -13,7 +13,7 @@ var handleMus = function(note, start, expr) {
 		repeat: handleMusRepeat
 	}[expr.tag];
 	if (typeof(func) === 'undefined') {
-		func = handleMusNoteAndRes;
+		func = handleMusNoteAndRest;
 	}
 	return func(note, start, expr);
 };
@@ -39,7 +39,7 @@ var handleMusRepeat = function(note, start, expr) {
 	return newStart;
 };
 
-var handleMusNoteAndRes = function(note, start, expr) {
+var handleMusNoteAndRest = function(note, start, expr) {
 	var item = { tag: expr.tag, start: start, dur: expr.dur };
 	if (expr.tag === 'note') {
 		item.pitch = expr.pitch;
