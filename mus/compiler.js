@@ -7,15 +7,20 @@ var compileMus = function(expr) {
 };
 
 var handleMus = function(note, start, expr) {
+	var func = selectMusFunc(expr.tag);
+	return func(note, start, expr);
+};
+
+var selectMusFunc = function(tag) {
 	var func = {
 		seq: handleMusSeq,
 		par: handleMusPar,
 		repeat: handleMusRepeat
-	}[expr.tag];
+	}[tag];
 	if (typeof(func) === 'undefined') {
 		func = handleMusNoteAndRest;
 	}
-	return func(note, start, expr);
+	return func;
 };
 
 var handleMusSeq = function(note, start, expr) {
